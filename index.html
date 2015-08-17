@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="test">
+<head>
+    <meta charset="UTF-8">
+    <title>JIRA Tickets Hunger Games</title>
+
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="js/controller.js"></script>
+
+</head>
+<body ng-controller="JIRA">
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">JIRA Tickets Hunger Games</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+            <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+            <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+        </div>
+    </header>
+
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+
+        <form action="#">
+            <div class="mdl-textfield mdl-js-textfield textfield-demo">
+                <input class="mdl-textfield__input" type="number" id="ticketnumber" ng-model="ticketnumber"/>
+                <label class="mdl-textfield__label" for="ticketnumber">Enter ticket number here...</label>
+            </div>
+
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="submitTicket()">
+                Submit
+            </button>
+        </form>
+        <br/>
+        <form action="#">
+            <div class="mdl-textfield mdl-js-textfield textfield-demo">
+                <input class="mdl-textfield__input" type="text" id="membername" ng-model="membername"/>
+                <label class="mdl-textfield__label" for="membername">Enter name of your team member here...</label>
+            </div>
+
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    ng-click="submitUser()">
+                Submit
+            </button>
+        </form>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                ng-click="assignTickets()">
+            Assign
+        </button>
+
+        <div>{{ticketsArray}}</div><br/>
+        <div>{{userArray}}</div><br/>
+        <ul class="example-animate-container">
+            <li class="animate-repeat" ng-repeat="assignment in assignments | filter:q as results">
+                {{assignment.member}} gets {{assignment.ticket}}!
+            </li>
+        </ul>
+        <li class="animate-repeat" ng-if="results.length == 0">
+            <strong>There are no assignments yet...</strong>
+        </li>
+
+
+    </main>
+</div>
+
+</body>
+</html>
